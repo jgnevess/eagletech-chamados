@@ -1,3 +1,13 @@
+# Sobre esse repositório
+
+Este repositório contém uma versão limpa do projeto, destinada para fins de estudo e portfólio.
+Aqui não existem credenciais, arquivos de configuração sensíveis, variáveis de ambiente ou dados internos.
+
+O repositório privado é o que realmente faz o deploy em produção, com toda a infraestrutura completa, secrets e automações de CI/CD.
+Este aqui serve apenas para demonstrar a arquitetura, organização do código e as tecnologias utilizadas.
+
+[App funcionando](https://chamados-eagletech.sitechsolutions.com.br)
+
 # 🚀 Eagletechsolutions  
 
 ![Status](https://img.shields.io/badge/status-active-success.svg)  
