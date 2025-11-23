@@ -1,0 +1,41 @@
+.sidebar .nav-item {
+  background-color: #1e233c;
+  color: #e0e0e0;
+  border-radius: 0;
+  border: none;
+  padding: 12px 16px;
+  transition: all 0.2s ease-in-out;
+}
+
+.sidebar .nav-item:hover {
+  background-color: #2a3158;
+  color: #fff;
+}
+
+.sidebar .nav-item .nav-icon i {
+  font-size: 1.1rem;
+  color: #9fa7d1;
+}
+
+.sidebar .nav-item:hover .nav-icon i {
+  color: #fff;
+}
+
+.sidebar .active-link {
+  background-color: #2f3969 !important;
+  border-left: 4px solid #fff;
+  color: #fff !important;
+}
+
+.sidebar .bi-caret-right-fill {
+  display: none;
+}
+
+.sidebar .active-link .bi-caret-right-fill {
+  display: block;
+  color: #fff;
+}
+
+.sidebar .nav-text {
+  font-weight: 500;
+}

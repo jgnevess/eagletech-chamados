@@ -1,0 +1,41 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* === LIGHT THEME === */
+:root {
+  --btn-dark-bg: #1e233c;
+  --btn-dark-hover: #161a2e;
+  --btn-dark-text: #fff;
+}
+
+/* === DARK THEME === */
+[data-bs-theme="dark"] {
+  --btn-dark-bg: #2f3654;
+  --btn-dark-hover: #242b47;
+  --btn-dark-text: #eaeaea;
+}
+
+/* === BUTTON DARK === */
+.btn-dark {
+  background-color: var(--btn-dark-bg);
+  border-color: var(--btn-dark-bg);
+  border-radius: 0;
+  color: var(--btn-dark-text);
+}
+
+.btn-dark:hover {
+  background-color: var(--btn-dark-hover);
+  border-color: var(--btn-dark-hover);
+  color: var(--btn-dark-text);
+}

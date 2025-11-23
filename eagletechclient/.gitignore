@@ -1,0 +1,71 @@
+# Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build Folders
+bin/
+obj/
+out/
+publish/
+aws
+eagletechcapi/Relatorios/
+
+# ASP.NET
+appsettings*.json
+*.db
+*.db-journal
+*.log
+
+# Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+yarn-debug.log
+package-lock.json
+.pnp.*
+.pnp.js
+
+# React
+build/
+dist/
+coverage/
+*.tgz
+
+# Environment Variables
+*env*
+.env
+.env*
+# *sql
+eagletechclient/src/.env.*
+tmp.txt
+
+# IDEs
+.idea/
+*.sublime-workspace
+*.sublime-project
+*.code-workspace
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+
+# Arquivos
+
+*.pdf
+*.docx
+*.xlsx
+*.zip
+*.rar
+*.7z
+*.tar.gz
+*.log
+*.tmp
+*.bak
+*.old
+*.swp
+*.swo
+*.csv

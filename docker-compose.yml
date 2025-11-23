@@ -1,0 +1,66 @@
+services:
+  mariadb:
+    container_name: mariadb
+    image: mariadb:10
+    restart: always
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./init-user.sql:/docker-entrypoint-initdb.d/init-user.sql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: eagletechtest
+      MYSQL_USER: joao
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      TZ: America/Sao_Paulo
+    healthcheck:
+      test:
+        - CMD
+        - mysqladmin
+        - ping
+        - "-h"
+        - localhost
+        - "-u"
+        - root
+        - "-p$$MYSQL_ROOT_PASSWORD"
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    command: "--character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci"
+
+  backend:
+    container_name: eagletechapi
+    image: jgneves/eagletechapi:latest
+    build: ./eagletechapi
+    depends_on:
+      mariadb:
+        condition: service_healthy
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./Relatorios:/app/relatorios
+    environment:
+      - DB_HOST=mariadb
+      - DB_USER=joao
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_NAME=eagletechtest
+      - ASPNETCORE_URLS=http://+:5000
+      - TZ=America/Sao_Paulo
+
+  frontend:
+    container_name: eagletechclient
+    image: jgneves/eagletechclient:latest
+    build:
+      context: ./eagletechclient
+      args:
+        REACT_APP_GEMINI_KEY: ${REACT_APP_GEMINI_KEY}
+    depends_on:
+      - backend
+    ports:
+      - "80:80"
+    environment:
+      - TZ=America/Sao_Paulo
+
+volumes:
+  db_data: null

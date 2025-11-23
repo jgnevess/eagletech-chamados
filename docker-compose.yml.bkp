@@ -1,0 +1,65 @@
+# docker compose para rodar a aplicação em produção na aws
+# copiar esse arquivo junto do arquivo init-user.sql para o servidor
+# Esse docker compose vai fazer um pull das imagens do docker hub jgneves do frontend e do backend
+# Vai fazer o pull da imagem do mariadb
+# Vai subir a aplicação em suas respectivas portas e deixar em execução os containers
+# Os dados do banco de dados vão ser salvos em volumes
+services:
+  mariadb:
+    image: mariadb:10
+    container_name: mariadb
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: eagletechtest
+      MYSQL_USER: joao
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./init-user.sql:/docker-entrypoint-initdb.d/init-user.sql
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "mysqladmin",
+          "ping",
+          "-h",
+          "localhost",
+          "-u",
+          "root",
+          "-p$$MYSQL_ROOT_PASSWORD",
+        ]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  backend:
+    image: jgneves/eagletechapi:latest
+    container_name: eagletechapi
+    depends_on:
+      mariadb:
+        condition: service_healthy
+    environment:
+      - DB_HOST=mariadb
+      - DB_USER=joao
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_NAME=eagletechtest
+      - ASPNETCORE_URLS=http://+:5000
+    ports:
+      - "5000:5000"
+
+  frontend:
+    image: jgneves/eagletechclient:latest
+    container_name: eagletechclient
+    depends_on:
+      - backend
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/logs_for_fail2ban:/var/log/nginx
+
+volumes:
+  db_data:

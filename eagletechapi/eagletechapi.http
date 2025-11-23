@@ -1,0 +1,6 @@
+@eagletechapi_HostAddress = http://localhost:5009
+
+GET {{eagletechapi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

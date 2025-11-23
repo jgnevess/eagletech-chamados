@@ -1,0 +1,44 @@
+.bg-login {
+  background-image: url('../../images/Login.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+
+.input-bg {
+  background-color: #3c6e96;
+  color: #fff;
+}
+
+
+.input-bg::placeholder {
+  color: #ccc;
+}
+
+.input-bg:focus {
+  background-color: #3c6e96;
+  color: #fff;
+}
+
+.input-icon-bg {
+  background-color: #88cdfa;
+}
+
+.input-icon-eye-bg {
+  background-color: #3c6e96;
+  border-left: none;
+}
+
+.btn-light:hover {
+  background-color: #3c6e96;
+}
+
+.btn-login {
+  background-color: #64befa;
+  font-size: 1.6em;
+  font-weight: bold;
+}
+
+.btn-login:hover {
+  background-color: #3c6e96;
+}
